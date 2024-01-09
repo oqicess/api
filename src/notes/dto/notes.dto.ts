@@ -1,10 +1,11 @@
 
 export class Notes{
 
-    readonly id?: string
+    readonly id: string
     readonly title: string; 
-    readonly message: string;
+    readonly text: string;
     readonly color : string;
-    readonly expires?: number;
+    readonly tags?: string[];
+    readonly reminder: number;
 
 }

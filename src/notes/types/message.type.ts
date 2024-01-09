@@ -1,8 +1,11 @@
 type Message = {
     id: string;
     title: string;
-    message: string | null;
-    date: Date;
+    text?: string;
+    createdAt: number;
+    updatedAt: number;
     color: string;
-    expires: number | null;
+    expires?: number;
+    tags?: string[];
+    reminder: number;
 };

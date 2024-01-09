@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Put, Res } from '@nestjs/common';
 import { NotesService } from 'src/notes/notes.service';
 import { Notes } from './dto/notes.dto';
 
@@ -29,6 +29,20 @@ export class NotesController {
     async getAllValues() {
       const values = await this.redisService.getAllValues();
       return values;
+    }
+
+    @Get('pdf')
+    async getPdf(@Res() res ){
+        
+        const pdfDoc = await this.redisService.generatePDF();
+
+        res.set({
+            'Content-Type': 'application/pdf',
+            'Content-Disposition': 'attachment; filename=example.pdf',
+            'Content-Length': pdfDoc.length,
+          })
+
+        res.end(pdfDoc)
     }
 
 
